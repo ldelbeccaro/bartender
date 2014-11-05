@@ -19,7 +19,7 @@ ingredients = {
 
 answers = {}
 
-def style():
+def preferences():
   answers = {}
   for question in questions:
     answer = raw_input(questions[question])
@@ -31,7 +31,12 @@ def style():
 
 def drink(dictionary):
   contents = []
-  for preference in dictionary:
-    if dictionary[value] == True:
-      ingredient = random.choice(ingredients[preference])
-    contents.append(ingredient)
+  for i in dictionary:
+    if dictionary[i] == True:
+      ingredient = random.choice(ingredients[i])
+      contents.append(ingredient)
+  return contents
+
+if __name__ == '__main__':
+  preferences()
+  print drink(answers)
