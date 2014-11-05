@@ -31,7 +31,7 @@ def preferences():
 def name():
   adjectives = ['Salty', 'Fluffy', 'Sappy', 'Crispy', 'Groggy']
   nouns = ['Seahorse', 'Log', 'Giraffe']
-  drinkname = str(random.choice(adjectives)) + " " + str(random.choice(nouns))
+  drinkname = str(random.choice(adjectives)) + ' ' + str(random.choice(nouns))
   return drinkname
 
 def drink(dictionary):
@@ -42,8 +42,14 @@ def drink(dictionary):
       contents.append(ingredient)
   return contents
 
+customers = {} 
+
 if __name__ == '__main__':
-  preferences()
+  customer = raw_input('What is your name?')
+  if customer in customers:
+    answers = customers[customer]
+  else:
+    customers[customer] = preferences()
   while True:
     print 'Ah, the', name()
     print drink(answers)
