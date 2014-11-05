@@ -20,7 +20,6 @@ ingredients = {
 answers = {}
 
 def preferences():
-  answers = {}
   for question in questions:
     answer = raw_input(questions[question])
     if answer == 'y' or answer == 'yes':
