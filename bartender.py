@@ -28,6 +28,12 @@ def preferences():
       answers[question] = False
   return answers
 
+def name():
+  adjectives = ['Salty', 'Fluffy', 'Sappy', 'Crispy', 'Groggy']
+  nouns = ['Seahorse', 'Log', 'Giraffe']
+  drinkname = str(random.choice(adjectives)) + " " + str(random.choice(nouns))
+  return drinkname
+
 def drink(dictionary):
   contents = []
   for i in dictionary:
@@ -38,4 +44,9 @@ def drink(dictionary):
 
 if __name__ == '__main__':
   preferences()
-  print drink(answers)
+  while True:
+    print 'Ah, the', name()
+    print drink(answers)
+    cont = raw_input('Would you like another drink?')
+    if not(cont == 'y' or cont == 'yes'):
+      break
