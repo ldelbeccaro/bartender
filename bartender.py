@@ -17,6 +17,8 @@ ingredients = {
     'fruity': ['slice of orange', 'dash of cassis', 'cherry on top']
 }
 
+answers = {}
+
 # key -> value
 # ingredient -> amount
 stock = {}
@@ -27,7 +29,6 @@ def stock_all():
             stock[ingred] = 10
 
 def preferences():
-    answers = {}
     for question in questions:
         answer = raw_input(questions[question])
         if answer == 'y' or answer == 'yes':
@@ -42,11 +43,11 @@ def name():
     drinkname = str(random.choice(adjectives)) + ' ' + str(random.choice(nouns))
     return drinkname
 
-def drink(dictionary):
+def drink(tastes): # tastes should be a dictionary of preferences
     contents = []
-    for i in dictionary:
-        if dictionary[i] == True:
-            ingredient = random.choice(ingredients[i])
+    for taste in tastes:
+        if tastes[taste] == True:
+            ingredient = random.choice(ingredients[taste])
             if not stock[ingredient] == 0:
                 contents.append(ingredient)
                 stock[ingredient] -= 1
@@ -56,17 +57,22 @@ def drink(dictionary):
                     stock[ingredient] = 10
     return contents
 
-customers = {} 
-
 if __name__ == '__main__':
+    stock_all()
+    customers = {}
     customer = raw_input('What is your name?')
-    if customer in customers:
-        answers = customers[customer]
-    else:
-        customers[customer] = preferences()
     while True:
-        print 'Ah, the', name()
-        print drink(answers)
-        cont = raw_input('Would you like another drink?')
-        if not(cont == 'y' or cont == 'yes'):
+        if customer == 'quit':
             break
+        elif customer in customers:
+            answers = customers[customer]
+        else:
+            customers[customer] = preferences()
+        while True:
+            print 'Ah, the', name()
+            print answers
+            print drink(answers)
+            cont = raw_input('Would you like another drink?')
+            if not (cont == 'y' or cont == 'yes'):
+                customer = raw_input('Next customer! What is your name? Type \"quit\" to exit.')
+                break
