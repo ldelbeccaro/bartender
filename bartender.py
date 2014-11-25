@@ -17,7 +17,6 @@ ingredients = {
     'fruity': ['slice of orange', 'dash of cassis', 'cherry on top']
 }
 
-answers = {}
 
 # key -> value
 # ingredient -> amount
@@ -29,6 +28,7 @@ def stock_all():
             stock[ingred] = 10
 
 def preferences():
+    answers = {}
     for question in questions:
         answer = raw_input(questions[question])
         if answer == 'y' or answer == 'yes':
@@ -67,12 +67,12 @@ if __name__ == '__main__':
         elif customer in customers:
             answers = customers[customer]
         else:
-            customers[customer] = preferences()
+            customers[customer] = preferences() 
+	    answers = customers[customer]
         while True:
             print 'Ah, the', name()
-            print answers
             print drink(answers)
             cont = raw_input('Would you like another drink?')
             if not (cont == 'y' or cont == 'yes'):
-                customer = raw_input('Next customer! What is your name? Type \"quit\" to exit.')
                 break
+	customer = raw_input('Next customer! What is your name? Type \"quit\" to exit.')
